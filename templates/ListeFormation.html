@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      {% load static %}
+  	<title>Liste des formations</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static "tmp/css/style.css" %}">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+        <button type="submit" class="btn-outline-dark mt-0 mb-5 rounded">
+          <a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a>
+        </button>
+
+        {% load crispy_forms_tags %}
+
+        <form method="get" class="uniForm blueForms">{% csrf_token %}
+<div class="border border-dark rounded p-3" style="background-image: url( 'https://st4.depositphotos.com/1400069/25524/i/450/depositphotos_255246954-stock-photo-blue-light-gradient-background-smooth.jpg')">
+    {{ myFilter.form }}
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            <input class="btn btn-dark rounded-circle" type="submit" value="Filter">
+</div>
+
+
+
+
+
+        </form>
+
+  </div>
+        <hr>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="h5 mb-4 text-center">Listes des Formations</h3>
+					<div class="container table-wrap">
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>
+						    	<th>&nbsp;</th>
+
+						    	<th><em>TITER</em></th>
+						      <th><em>CATEGORIE</em></th>
+						      <th><em>ETAT</em></th>
+						      <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    {% if f %}
+                                {% for foo in f %}
+                                    <tr class="alert" role="alert">
+						    	<td>
+                                    {% with foo.logo as image_path %}
+                                            <div class="img " style="background-image: url({% static image_path %});"></div>
+                                        {% endwith %}
+						    	</td>
+						      <td>
+						      		<div>{{ foo.titer }} </div>
+
+						      </td>
+						      <td>{{ foo.categ }}</td>
+
+				              <td>{{ foo.etat }}</td>
+						      <td>
+						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				          	</button>
+				        	</td>
+						    </tr>
+                                {% endfor %}
+                            {% endif %}
+
+
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static "tmp/js/jquery.min.js" %}"></script>
+  <script src="{% static "tmp/js/popper.js" %}"></script>
+  <script src="{% static "tmp/js/bootstrap.min.js" %}"></script>
+  <script src="{% static "tmp/js/main.js" %}"></script>
+
+	</body>
+</html>
+
