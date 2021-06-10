@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
       {% load static %}
+      {% load widget_tweaks %}
   	<title>Liste des formations</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,30 +13,41 @@
 
 	<link rel="stylesheet" href="{% static "tmp/css/style.css" %}">
 
+
 	</head>
-	<body>
+	<body class="m-0">
 	<section class="ftco-section">
 		<div class="container">
-        <button type="submit" class="btn-outline-dark mt-0 mb-5 rounded">
-          <a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a>
-        </button>
+            <div class="d-flex flex-row-reverse">
+                <button type="submit" class="btn-outline-dark mr-5 rounded">
+                   <a href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a>
+                </button>
+            </div>
 
-        {% load crispy_forms_tags %}
-
-        <form method="get" class="uniForm blueForms">{% csrf_token %}
-<div class="border border-dark rounded p-3" style="background-image: url( 'https://st4.depositphotos.com/1400069/25524/i/450/depositphotos_255246954-stock-photo-blue-light-gradient-background-smooth.jpg')">
-    {{ myFilter.form }}
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-            </svg>
-            <input class="btn btn-dark rounded-circle" type="submit" value="Filter">
-</div>
-
-
-
-
-
-        </form>
+            <form method="get">
+                <div class="well">
+                  <h4 style="margin-top: 0">Filter</h4>
+                  <div class="row">
+                    <div class="form-group col-sm-4 col-md-3">
+                      <label class="mr-2"><em>Titre:</em></label><br>
+                      {% render_field myFilter.form.titer class="form-control" %}
+                    </div>
+                    <div class="form-group col-sm-4 col-md-3">
+                      <label class="mr-2"><em>Categorie:</em></label><br>
+                      {% render_field myFilter.form.categ class="form-control" %}
+                    </div>
+                    <div class="form-group col-sm-4 col-md-3">
+                      <label class="mr-2"><em>Etat:</em></label><br>
+                      {% render_field myFilter.form.etat class="form-control" %}
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>Search
+                  </button>
+                </div>
+            </form>
 
   </div>
         <hr>
@@ -73,7 +85,12 @@
 				              <td>{{ foo.etat }}</td>
 						      <td>
 						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				            	<span aria-hidden="true"><i class="fa fa-close"></i></span>
+				            	<span aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+                                      <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                                      <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                                    </svg>
+                                </span>
 				          	</button>
 				        	</td>
 						    </tr>
@@ -93,6 +110,7 @@
   <script src="{% static "tmp/js/popper.js" %}"></script>
   <script src="{% static "tmp/js/bootstrap.min.js" %}"></script>
   <script src="{% static "tmp/js/main.js" %}"></script>
+
 
 	</body>
 </html>
